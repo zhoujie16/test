@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/seajs/sea.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/seajs-text/seajs-text.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+</body>
+<script type="text/javascript">
+    seajs.config({
+        alias: {
+            a: './a',
+            jquery: './jquery',
+            red: './text',
+        }
+    });
+    seajs.use(['a', 'red', 'jquery'], function(a, $, red) {
+        console.log(a);
+        console.log($);
+        console.log(red);
+    });
+    
+</script>
+
+</html>

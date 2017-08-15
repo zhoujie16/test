@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title> 
+    <script src="http://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <div> days:第{{days}}天 </div>
+        <div> 经过了{{ days_diff }}天{{ hours_diff }}小时{{ minutes_diff }}分钟{{ seconds_diff }}秒 </div>
+
+    </div>
+
+</body>
+<script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            strtTime: 1494985260000,
+            nowTime: 0,
+            days: 0,
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+            days_diff: 0,
+            hours_diff: 0,
+            minutes_diff: 0,
+            seconds_diff: 0,
+        },
+        watch: {
+            nowTime: function() {
+                var date1 = '2017/05/17 09:41:00'; //开始时间  
+                var date2 = new Date(this.nowTime); //结束时间  
+                var date3 = date2.getTime() - new Date(date1).getTime(); //时间差的毫秒数        
+
+                //------------------------------  
+
+                //计算出相差天数  
+                var days = Math.floor(date3 / (24 * 3600 * 1000));
+
+                //计算出小时数  
+
+                var leave1 = date3 % (24 * 3600 * 1000) //计算天数后剩余的毫秒数  
+                var hours = Math.floor(leave1 / (3600 * 1000));
+                //计算相差分钟数  
+                var leave2 = leave1 % (3600 * 1000); //计算小时数后剩余的毫秒数  
+                var minutes = Math.floor(leave2 / (60 * 1000));
+                //计算相差秒数  
+                var leave3 = leave2 % (60 * 1000); //计算分钟数后剩余的毫秒数  
+                var seconds = Math.round(leave3 / 1000);
+                
+                this.days_diff = days;
+                this.hours_diff = hours;
+                this.minutes_diff = minutes;
+                this.seconds_diff = seconds;
+                this.days = Number(((this.nowTime - 1494950400000) / 86400000).toFixed(0)) + 1;
+            }
+        },
+        mounted: function() {
+            var self = this;
+            self.nowTime = new Date();
+            setInterval(function() {
+                self.nowTime = new Date();
+            }, 500);
+        }
+    }); 
+</script>
+
+</html>

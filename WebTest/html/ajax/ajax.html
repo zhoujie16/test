@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<div id="app">
+			<div class="">
+				<p>{{data}}</p>
+				<p>{{err}}</p>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var url = 'http://10.180.4.139:8080/INFO_DMS_WEB/JsonChannel?action=QUERY_ALL_ASC_INFO';
+			new Vue({
+				el: '#app',
+				data: {
+					data: {},
+					err: {},
+				},
+				methods: {
+					muiAjax: function() {
+						var self = this;
+						mui.ajax(url, {
+							dataType: 'json', //服务器返回json格式数据
+							type: 'get', //HTTP请求类型
+							crossDomain:true,
+							timeout: 10000, //超时时间设置为10秒；
+							success: function(data) {
+								self.data = data;
+							},
+							error: function(xhr, type, errorThrown) {
+								self.err = type;
+							}
+						});
+					},
+					jqueryAjax: function() {
+						var self = this;
+						$.ajax({
+							type: 'GET',
+							url: url,
+							error: function(xhr, status, error) {
+								self.err = status;
+							},
+							success: function(response, status, xhr) {
+								self.data = response;
+							},
+						});
+					},
+					jqueryJsonp: function() {
+						var self = this;
+						$.ajax({
+							url: url,
+							type: "GET",
+							dataType: 'jsonp',
+							jsonpCallback: 'callback',
+							success: function(response, status, xhr) {
+								self.data = response;
+							},
+						});
+					},
+				},
+				mounted: function() {
+					this.muiAjax();
+				}
+			})
+		</script>
+	</body>
+
+</html>

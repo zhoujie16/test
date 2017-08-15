@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{ a }}</div>
+        <div>{{ b }}</div>
+        <div>{{ c }}</div>
+        <div>{{ d }}</div>
+        <div>{{ e }}</div>
+    </div>
+    <script type="text/javascript">
+        var info = {
+            e: 'e'
+        };
+        var app = new Vue({
+            el: '#app',
+            data: {
+                a: 'a',
+                b: 'b',
+            },
+            computed: {
+                c: {
+                    get: function() {
+                        return this.a + ',' + this.b;
+                    },
+                    set: function(v) {
+                        this.a = v.split(',')[0];
+                        this.b = v.split(',')[1];
+                    },
+                },
+                d: function() {
+                    return this.c + ',ddd'
+                },
+
+                e: {
+                    get: function() {
+                        return info.e;
+                    },
+                    set: function(v) {
+                        //info.e = v; 这么做无效
+                    }
+                }, 
+            }
+        })
+    </script>
+</body>
+
+</html>

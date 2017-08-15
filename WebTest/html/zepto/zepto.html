@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="btn" style="height: 5rem;background-color: lightcoral;">
+
+		</div>
+		<script src="zepto.js" type="text/javascript" charset="utf-8"></script>
+		<script src="src/touch.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Zepto('#btn').on('tap', function() {
+				console.log('tap');
+			});
+			Zepto('#btn').on('click', function() {
+				console.log('click');
+			});
+		</script>
+	</body>
+
+</html>

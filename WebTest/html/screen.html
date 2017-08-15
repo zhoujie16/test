@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<style type="text/css">
+			html{
+				font-size: 10px;
+			}
+			#app {
+				text-align: center;
+				font-size: 30px;
+				line-height: 30px;
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+			
+			#app p {
+				font-size: 1.4rem;
+				color: black;
+			}
+		</style>
+		<div id="app">
+			<p>屏幕分辨率的高：{{ height }}</p>
+			<p>屏幕分辨率的宽：{{ width }}</p>
+			<p>设备屏幕高度分辨率：{{ resolutionHeight }}</p>
+			<p>设备屏幕宽度分辨率：{{ resolutionWidth }}</p>
+			<p>逻辑分辨率与实际分辨率的比例：{{ scale }}</p>
+			<p>设备屏幕水平方向的密度：{{ dpiX }}</p>
+			<p>设备屏幕垂直方向的密度：{{ dpiY }}</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		new Vue({
+			el: '#app',
+			data: {
+				height: 0,
+				width: 0,
+				resolutionHeight: 0,
+				resolutionWidth: 0,
+				scale: 0,
+				dpiX: 0,
+				dpiY: 0,
+			},
+			mounted: function() {
+				this.height = window.screen.height;
+				this.width = window.screen.width;
+				if(mui.os.plus) {
+					this.resolutionHeight = plus.screen.resolutionHeight;
+					this.resolutionWidth = plus.screen.resolutionWidth;
+					this.scale = plus.screen.scale;
+					this.dpiX = plus.screen.dpiX;
+					this.dpiY = plus.screen.dpiY;
+				}
+			},
+			methods: {
+
+			},
+		})
+	</script>
+
+</html>

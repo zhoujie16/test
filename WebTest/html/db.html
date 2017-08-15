@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>数据库类型支持情况</title>
+	</head>
+
+	<body>
+		<div id="app">
+			<div class="">
+				indexDB:{{a}}
+			</div>
+			<div class="">
+				WebSQL:{{b}}
+			</div>
+		</div>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#app',
+				data: {
+					a: '?',
+					b: '?'
+				},
+				mounted: function() {
+					if(window.indexedDB) {
+						this.a = '支持';
+					} else {
+						this.a = '不支持';
+					}
+
+					if(window.openDatabase) {
+						this.b = '支持';
+					} else {
+						this.b = '不支持';
+					}
+				},
+			});
+		</script>
+	</body>
+
+</html>

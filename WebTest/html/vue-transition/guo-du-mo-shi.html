@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.css" />
+    <script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+    <style>
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: all 1s ease;
+        }
+        
+        .fade-enter,
+        .fade-leave-to {
+            opacity: 0;
+            margin-top: 100px;
+        }
+    </style>
+    <div id="app">
+        <button type="button" @click="view=view==='v-a'?'v-b':'v-a'" class="mui-btn">按钮</button>
+        <transition name="fade" mode="out-in">
+            <component v-bind:is="view"></component>
+        </transition>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                view: 'v-a'
+            },
+            components: {
+                'v-a': {
+                    template: '<div>Component A</div>'
+                },
+                'v-b': {
+                    template: '<div>Component B</div>'
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

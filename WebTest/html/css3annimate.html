@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<style type="text/css">
+    @keyframes myfirst {
+        from {
+            top: 200px;
+        }
+        to {
+            top: 0px;
+        }
+    }
+    
+    .donghua {
+        animation: myfirst 1s;
+    }
+    
+    div {
+        width: 200px;
+        height: 200px;
+        background-color: #6641E2;
+        position: absolute;
+        top: 200px;
+    }
+</style>
+
+<body>
+    <div class="div">
+
+    </div>
+    <div class="btn" style="margin-left: 300px;">
+        anniu
+    </div>
+    <script type="text/javascript">
+        $('.btn').click(function() {
+            console.log(1);
+            $('.div').addClass('donghua');
+            setTimeout(function() {
+                $('.div').removeClass('donghua');
+            }, 1000);
+        })
+    </script>
+</body>
+
+</html>

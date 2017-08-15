@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="../../css/mui.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <style type="text/css">
+        .container {
+            position: relative;
+            height: 200px;
+        }
+        
+        .view {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+        
+        .view.one {
+            background-color: red;
+        }
+        
+        .view.two {
+            background-color: green;
+        }
+        
+        .slide-enter,
+        .slide-leave-to {
+            margin-left: 100%;
+        }
+        
+        .slide-enter-active,
+        .slide-leave-active {
+            transition: all 0.3s;
+        }
+    </style>
+    <script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+
+    <div id="demo">
+        <button @click="toggle">
+            Toggle
+        </button>
+        <div class="container">
+            <transition name="slide" mode="in-out">
+                <component :is="view"></component>
+            </transition>
+        </div>
+    </div>
+    <script type="text/javascript">
+        new Vue({
+            el: '#demo',
+            data: {
+                view: 'one'
+            },
+            methods: {
+                toggle: function() {
+                    //this.isShow = !this.isShow
+                    this.view = this.view === 'one' ? 'two' : 'one';
+                },
+            },
+            components: {
+                one: {
+                    template: '<div class="view one"></div>'
+                },
+                two: {
+                    template: '<div class="view two"></div>'
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
