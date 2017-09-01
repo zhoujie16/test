@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="app">
+        <aaa :item="item"></aaa>
+    </div>
+    <script type="text/javascript">
+        Vue.component('aaa', {
+            template: '<div @click="action1">{{a}}</div>',
+            data: function() {
+                return {};
+            },
+            props: ['item'],
+            computed: {
+                a: {
+                    get: function() {
+                        return this.item.a;
+                    },
+                    set: function(v) {
+                        this.item.a = v;
+                    }
+                }
+            },
+            watch: {
+                item: {
+                    deep: true,
+                    handler: function(v) {
+                        console.log(JSON.stringify(v));
+                    }
+                }
+            },
+            methods: {
+                action1: function() {
+                    this.a = 'aa';
+                }
+            }
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                item: {}
+            },
+            watch: {
+                item: {
+                    deep: true,
+                    handler: function(v) {
+                        console.log(JSON.stringify(v));
+                    }
+                }
+            },
+            mounted: function() {
+                this.item = {
+                    a: 'a',
+                    b: 'b',
+                    c: 'c',
+                };
+            }
+        });
+    </script>
+</body>
+
+</html>
